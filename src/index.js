@@ -1,4 +1,5 @@
 const readline = require('readline');
+const colors = require('colors');
 
 'use strict';
 
@@ -7,7 +8,7 @@ class TicTacToe {
     this.moveState = new Array(9).fill(null);
     this.display = '';
     this.currentPlayer = 1;
-    this.glyph = 'X';
+    this.glyph = 'X'.red;
     this.cellKey = {
       1: 6,
       2: 7,
@@ -45,10 +46,23 @@ class TicTacToe {
     console.log(this.display, '\n', `Player ${this.currentPlayer}, please select a cell.`);
   }
 
-  start() {
+  chooseGameMode() {
+    this.rl.question('How many players? (1 or 2)', input => {
+      if(![1, 2].some(num => parseInt(input) === num)) {
+        console.log('Please enter 1 or 2.');
+      } else if(input === '2') {
+        this.start2PlayerGame();
+      } else {
+        console.log('Sorry, CPU opponent not yet implemented.')
+        this.rl.close();
+      }
+    })
+  }
+
+  start2PlayerGame() {
     this.pushDisplay();
     this.rl.on('line', input => {
-      if (!input.match(/^[0-9]+$/) || parseInt(input) > 9 || parseInt(input) < 1) {
+      if (![1,2,3,4,5,6,7,8,9].some(num => parseInt(input) === num)) {
         this.pushDisplay();
         console.log('Not a valid cell.');
       } else if (this.moveState[this.cellKey[input]]) {
@@ -64,7 +78,7 @@ class TicTacToe {
     this.moveState[this.cellKey[input]] = this.glyph;
     this.checkWin(this.currentPlayer, this.glyph);
     this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
-    this.glyph === 'X' ? this.glyph = 'O' : this.glyph = "X";
+    this.glyph === 'X'.red ? this.glyph = 'O'.yellow : this.glyph = "X".red;
     this.pushDisplay();
   }
 
@@ -96,4 +110,4 @@ class TicTacToe {
 }
 
 const game = new TicTacToe();
-game.start();
+game.chooseGameMode();

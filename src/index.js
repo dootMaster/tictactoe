@@ -5,7 +5,6 @@ const colors = require('colors');
 
 class TicTacToe {
   constructor() {
-    // this.moveState = new Array(9).fill(null);
     this.moveState = [new Array(3).fill(null), new Array(3).fill(null), new Array(3).fill(null)];
     this.display = '';
     this.currentPlayer = 1;
@@ -46,7 +45,7 @@ class TicTacToe {
 
   pushDisplay() {
     this.updateDisplay();
-    // console.clear();
+    console.clear();
     console.log(this.display, '\n', `Player ${this.currentPlayer}, please select a cell.`);
   }
 

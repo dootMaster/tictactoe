@@ -1,5 +1,4 @@
 const readline = require('readline');
-const colors = require('colors');
 
 'use strict';
 
@@ -8,7 +7,7 @@ class TicTacToe {
     this.moveState = [new Array(3).fill(null), new Array(3).fill(null), new Array(3).fill(null)];
     this.display = '';
     this.currentPlayer = 1;
-    this.glyph = 'X'.red;
+    this.glyph = 'X';
     this.playerAmount = null;
     this.availableCPUMoves = Array.from(Array(9).keys());
 
@@ -113,7 +112,7 @@ class TicTacToe {
 
   switchPlayer() {
     this.currentPlayer === 1 ? this.currentPlayer = 2 : this.currentPlayer = 1;
-    this.glyph === 'X'.red ? this.glyph = 'O'.yellow : this.glyph = "X".red;
+    this.glyph === 'X' ? this.glyph = 'O' : this.glyph = "X";
   }
 
   checkWin(player, glyph) {
@@ -144,7 +143,7 @@ class TicTacToe {
       this.updateDisplay()
       this.rl.close();
       this.pushDisplay();
-      console.log(`Not a tie. Both are losers.`);
+      console.log(`A tie has occurred.`);
       process.exit();
     }
   }

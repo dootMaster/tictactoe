@@ -144,7 +144,7 @@ class TicTacToe {
       this.updateDisplay()
       this.rl.close();
       this.pushDisplay();
-      console.log(`Not a tie. Both are losers.`);
+      console.log(`A tie has occurred.`);
       process.exit();
     }
   }

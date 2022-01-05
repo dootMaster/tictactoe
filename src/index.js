@@ -1,7 +1,5 @@
 const readline = require('readline');
 
-'use strict';
-
 class TicTacToe {
   constructor() {
     this.moveState = [new Array(3).fill(null), new Array(3).fill(null), new Array(3).fill(null)];
